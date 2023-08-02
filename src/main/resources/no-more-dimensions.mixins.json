@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.vorono4ka.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractFireBlockMixin",
+    "EnderEyeItemMixin",
+    "EntityMixin",
+    "NetherPortalBlockMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
