@@ -8,7 +8,7 @@
 		"Vorono4ka"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://github.com/Vorono4ka/no-more-dimensions",
 		"sources": "https://github.com/Vorono4ka/no-more-dimensions"
 	},
 	"license": "CC0-1.0",
@@ -19,11 +19,12 @@
 			"com.vorono4ka.NoMoreDimensionsMod"
 		],
 		"client": [
-			"com.vorono4ka.NoMoreDimensionsClientMod"
+			"com.vorono4ka.NoMoreDimensionsModClient"
 		]
 	},
 	"mixins": [
-		"no-more-dimensions.mixins.json"
+		"no-more-dimensions.mixins.common.json",
+		"no-more-dimensions.mixins.edenring.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",

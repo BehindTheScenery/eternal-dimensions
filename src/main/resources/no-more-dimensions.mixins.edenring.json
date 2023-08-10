@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.vorono4ka.mixin.edenring",
+  "plugin": "com.vorono4ka.mixin.EdenRingMixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "FlintAndSteelItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinPriority": 2
+}
