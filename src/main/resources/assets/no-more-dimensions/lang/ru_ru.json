@@ -1,0 +1,5 @@
+{
+  "custom_text.no_more_dimensions.portal_building_blocked": "Этот портал тебе сейчас не доступен!",
+  "custom_text.no_more_dimensions.dimension_blocked": "Это измерение тебе сейчас не доступно!",
+  "commands.no_more_dimensions.reload.success": "Конфиг перезагружен!"
+}

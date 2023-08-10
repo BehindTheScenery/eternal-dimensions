@@ -1,0 +1,5 @@
+{
+  "custom_text.no_more_dimensions.portal_building_blocked": "This portal is not available to you right now!",
+  "custom_text.no_more_dimensions.dimension_blocked": "This dimension is not available to you right now!",
+  "commands.no_more_dimensions.reload.success": "Config reloaded!"
+}
