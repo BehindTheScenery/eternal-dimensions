@@ -13,7 +13,7 @@ public class DimensionManager {
     public static boolean handlePortalCollision(Identifier dimension, PlayerEntity player) {
         boolean dimensionBlocked = isDimensionBlocked(dimension);
         if (dimensionBlocked && player != null) {
-            sendDimensionBlockedMessage(player);
+            notifyDimensionBlocked(player);
         }
 
         return dimensionBlocked;
@@ -23,11 +23,11 @@ public class DimensionManager {
         return ArrayUtils.contains(ModConfig.blockedDimensions, dimension.toString());
     }
 
-    public static void sendPortalBuildingBlockedMessage(PlayerEntity player) {
+    public static void notifyPortalBuildingBlocked(PlayerEntity player) {
         player.sendMessage(ModConfig.portalBuildingBlocked, true);
     }
 
-    public static void sendDimensionBlockedMessage(PlayerEntity player) {
+    public static void notifyDimensionBlocked(PlayerEntity player) {
         player.sendMessage(ModConfig.dimensionBlocked, true);
     }
 }

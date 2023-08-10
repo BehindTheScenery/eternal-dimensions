@@ -1,4 +1,4 @@
-package com.vorono4ka.mixin;
+package com.vorono4ka.mixin.common;
 
 import com.vorono4ka.DimensionManager;
 import net.minecraft.block.BlockState;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(NetherPortalBlock.class)
-public class NetherPortalBlockMixin {
+public abstract class NetherPortalBlockMixin {
 	@Inject(at = @At(value = "HEAD"), method = "onEntityCollision", cancellable = true)
 	private void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
 		// Allows to exit nether world

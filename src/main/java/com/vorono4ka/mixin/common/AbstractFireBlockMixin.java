@@ -1,4 +1,4 @@
-package com.vorono4ka.mixin;
+package com.vorono4ka.mixin.common;
 
 import com.vorono4ka.DimensionManager;
 import net.minecraft.block.AbstractFireBlock;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractFireBlock.class)
-public class AbstractFireBlockMixin {
+public abstract class AbstractFireBlockMixin {
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/dimension/AreaHelper;createPortal()V"), method = "onBlockAdded", cancellable = true)
 	private void onCreatePortal(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
 		if (DimensionManager.handlePortalBuilding(World.NETHER.getValue())) {
@@ -23,7 +23,7 @@ public class AbstractFireBlockMixin {
 			}
 
 			for (PlayerEntity player : world.getPlayers()) {
-				DimensionManager.sendPortalBuildingBlockedMessage(player);
+				DimensionManager.notifyPortalBuildingBlocked(player);
 			}
 		}
 	}
