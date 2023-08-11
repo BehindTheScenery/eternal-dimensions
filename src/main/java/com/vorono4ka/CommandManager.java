@@ -12,7 +12,7 @@ public class CommandManager {
             .requires(source -> source.hasPermissionLevel(4))
             .executes(context -> {
                 ModConfig.loadConfig();
-                context.getSource().sendMessage(Text.literal("Config reloaded!"));
+                context.getSource().sendMessage(Text.translatable("commands.no_more_dimensions.reload.success"));
 
                 return 1;
             })));
