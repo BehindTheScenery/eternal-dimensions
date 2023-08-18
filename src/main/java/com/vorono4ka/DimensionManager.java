@@ -31,7 +31,7 @@ public class DimensionManager {
     private static final int FAILED_PARTICLE_COLOR = 0x9714cf;
     private static final boolean FORCE_PARTICLES = true;
     private static final float FAILED_PARTICLE_SPEED = 0.01f;
-    private static final int FAILED_PARTICLE_COUNT = 1000;
+    private static final int FAILED_PARTICLE_DENSITY = 100;
     public static final SoundEvent PORTAL_BUILDING_BLOCKED_SOUND = SoundEvents.ENTITY_GENERIC_EXPLODE;
 
     public static boolean handleEndPortalBuilding(ServerWorld world, BlockPattern.Result result, PlayerEntity player) {
@@ -49,6 +49,7 @@ public class DimensionManager {
                 world,
                 new DustParticleEffect(new Vec3f(Vec3d.unpackRgb(FAILED_PARTICLE_COLOR)), 1.0f),
                 portalMiddlePosition,
+                FAILED_PARTICLE_DENSITY * result.getWidth() * result.getHeight() * result.getDepth(),
                 new Vec3f(1, 0.25f, 1)
             );
 
@@ -77,6 +78,7 @@ public class DimensionManager {
                 world,
                 ParticleTypes.FLAME,
                 portalMiddlePosition,
+                FAILED_PARTICLE_DENSITY * width * height,
                 MathHelper.translate(new Vec3f(), negativeDir.getOpposite(), Direction.UP, 0.25f, height / 2, width / 2)
             );
 
@@ -120,13 +122,13 @@ public class DimensionManager {
         return ArrayUtils.contains(ModConfig.blockedDimensions, dimension.toString());
     }
 
-    private static void createFailedParticles(ServerWorld world, ParticleEffect particleEffect, Vec3f portalMiddlePosition, Vec3f delta) {
+    private static void createFailedParticles(ServerWorld world, ParticleEffect particleEffect, Vec3f portalMiddlePosition, int particleCount, Vec3f delta) {
         ParticleHelper.spawnParticle(
             world,
             particleEffect,
             FORCE_PARTICLES,
             portalMiddlePosition,
-            FAILED_PARTICLE_COUNT,
+            particleCount,
             delta,
             FAILED_PARTICLE_SPEED
         );
