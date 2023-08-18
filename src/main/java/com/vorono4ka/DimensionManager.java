@@ -29,6 +29,7 @@ import net.minecraft.world.WorldAccess;
 
 public class DimensionManager {
     private static final int FAILED_PARTICLE_COLOR = 0x9714cf;
+    public static final DustParticleEffect END_PORTAL_BUILDING_FAILED_PARTICLE_EFFECT = new DustParticleEffect(new Vec3f(Vec3d.unpackRgb(FAILED_PARTICLE_COLOR)), 1.0f);
     private static final boolean FORCE_PARTICLES = true;
     private static final float FAILED_PARTICLE_SPEED = 0.01f;
     private static final int FAILED_PARTICLE_DENSITY = 100;
@@ -47,9 +48,14 @@ public class DimensionManager {
             clearEndPortalFrames(world, result);
             createFailedParticles(
                 world,
-                new DustParticleEffect(new Vec3f(Vec3d.unpackRgb(FAILED_PARTICLE_COLOR)), 1.0f),
-                portalMiddlePosition,
-                FAILED_PARTICLE_DENSITY * result.getWidth() * result.getHeight() * result.getDepth(),
+                END_PORTAL_BUILDING_FAILED_PARTICLE_EFFECT,
+                MathHelper.translate(MathHelper.createVec3f(result.getFrontTopLeft()), Direction.WEST, Direction.UP, 0.5f, 0.5f, 0.5f),
+                Direction.NORTH,
+                Direction.WEST,
+                result.getHeight() - 2,
+                result.getWidth() - 2,
+                result.getDepth(),
+                FAILED_PARTICLE_DENSITY,
                 new Vec3f(1, 0.25f, 1)
             );
 
@@ -63,9 +69,6 @@ public class DimensionManager {
 
     public static void handleNetherPortalBuilding(ServerWorld world, BlockPos lowerCorner, int height, Direction negativeDir, int width) {
         Vec3f vec3f = MathHelper.createVec3f(lowerCorner);
-        if (negativeDir == Direction.WEST) {
-            vec3f.add(1f, 0, 0);  // WTF, Minecraft?
-        }
 
         Vec3f portalMiddlePosition = MathHelper.translate(vec3f, negativeDir, Direction.UP, -0.5f, height / 2f, width / 2f);
 
@@ -73,13 +76,22 @@ public class DimensionManager {
         if (dimensionBlocked) {
             destroyNetherPortal(world, lowerCorner, height, negativeDir, width);
 
-            //noinspection IntegerDivisionInFloatingPointContext
+            float offsetForwards = -0.5f;
+            if (negativeDir == Direction.WEST) {
+                offsetForwards *= -1;
+            }
+
             createFailedParticles(
                 world,
                 ParticleTypes.FLAME,
-                portalMiddlePosition,
-                FAILED_PARTICLE_DENSITY * width * height,
-                MathHelper.translate(new Vec3f(), negativeDir.getOpposite(), Direction.UP, 0.25f, height / 2, width / 2)
+                MathHelper.translate(vec3f, negativeDir.getOpposite(), Direction.UP, 0.5f, 0.5f, offsetForwards),
+                Direction.UP,
+                negativeDir,
+                height,
+                width,
+                1,
+                FAILED_PARTICLE_DENSITY,
+                MathHelper.translate(new Vec3f(), negativeDir.getOpposite(), Direction.UP, 0.25f, 0.5f, 0.5f)
             );
 
             for (PlayerEntity player : world.getPlayers()) {
@@ -122,16 +134,21 @@ public class DimensionManager {
         return ArrayUtils.contains(ModConfig.blockedDimensions, dimension.toString());
     }
 
-    private static void createFailedParticles(ServerWorld world, ParticleEffect particleEffect, Vec3f portalMiddlePosition, int particleCount, Vec3f delta) {
-        ParticleHelper.spawnParticle(
-            world,
-            particleEffect,
-            FORCE_PARTICLES,
-            portalMiddlePosition,
-            particleCount,
-            delta,
-            FAILED_PARTICLE_SPEED
-        );
+    private static void createFailedParticles(ServerWorld world, ParticleEffect particleEffect, Vec3f cornerVector, Direction direction, Direction direction1, int height, int width, int depth, int particleCount, Vec3f delta) {
+        for (int i = 0; i < height; i++) {
+            Vec3f modifiedVector = MathHelper.add(cornerVector, direction.getVector().multiply(i));
+            for (int j = 0; j < width; j++) {
+                ParticleHelper.spawnParticle(
+                    world,
+                    particleEffect,
+                    FORCE_PARTICLES,
+                    MathHelper.add(modifiedVector, direction1.getVector().multiply(j)),
+                    particleCount,
+                    delta,
+                    FAILED_PARTICLE_SPEED
+                );
+            }
+        }
     }
 
     private static void clearEndPortalFrames(ServerWorld world, BlockPattern.Result result) {
