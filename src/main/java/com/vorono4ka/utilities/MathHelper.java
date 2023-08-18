@@ -3,6 +3,7 @@ package com.vorono4ka.utilities;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.Vec3i;
 import org.jetbrains.annotations.NotNull;
 
 public class MathHelper {
@@ -20,13 +21,20 @@ public class MathHelper {
         float xOffset = vec3i2.getX() * offsetUp + vec3i3.getX() * offsetLeft + vec3i.getX() * offsetForwards;
         float yOffset = vec3i2.getY() * offsetUp + vec3i3.getY() * offsetLeft + vec3i.getY() * offsetForwards;
         float zOffset = vec3i2.getZ() * offsetUp + vec3i3.getZ() * offsetLeft + vec3i.getZ() * offsetForwards;
-        pos.add(xOffset, yOffset, zOffset);
-        return pos;
+        Vec3f result = pos.copy();
+        result.add(xOffset, yOffset, zOffset);
+        return result;
     }
 
     public static Vec3f add(Vec3f pos, Vec3f offset) {
         Vec3f result = pos.copy();
         result.add(offset);
+        return result;
+    }
+
+    public static Vec3f add(Vec3f pos, Vec3i offset) {
+        Vec3f result = pos.copy();
+        result.add(offset.getX(), offset.getY(), offset.getZ());
         return result;
     }
 
