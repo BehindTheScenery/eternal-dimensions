@@ -3,6 +3,7 @@ package com.vorono4ka.config;
 import com.vorono4ka.NoMoreDimensionsMod;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ModConfig {
     private static final ModConfigProvider provider = new ModConfigProvider();
@@ -22,7 +23,7 @@ public class ModConfig {
     }
 
     private static void initDefaults() {
-        provider.add("blocked_dimensions", "");
+        provider.add("blocked_dimensions", Collections.emptyList());
     }
 
     private static void assignValues() {
