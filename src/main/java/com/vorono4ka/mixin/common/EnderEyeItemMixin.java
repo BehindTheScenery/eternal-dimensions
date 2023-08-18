@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.EndPortalFrameBlock;
 import net.minecraft.block.pattern.BlockPattern;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EnderEyeItem;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
@@ -54,13 +53,8 @@ public abstract class EnderEyeItemMixin {
 			}
 			world.syncGlobalEvent(WorldEvents.END_PORTAL_OPENED, blockPos2.add(1, 0, 1), 0);
 
-			if (DimensionManager.handleEndPortalBuilding((ServerWorld) world, result)) {
+			if (DimensionManager.handleEndPortalBuilding((ServerWorld) world, result, context.getPlayer())) {
 				cir.setReturnValue(ActionResult.FAIL);
-
-				PlayerEntity player = context.getPlayer();
-				if (player == null) return;
-
-				DimensionManager.notifyPortalBuildingBlocked(player);
 				return;
 			}
 		}

@@ -1,0 +1,6 @@
+accessWidener v2 named
+accessible field net/minecraft/world/dimension/AreaHelper lowerCorner Lnet/minecraft/util/math/BlockPos;
+accessible field net/minecraft/world/dimension/AreaHelper height I
+accessible field net/minecraft/world/dimension/AreaHelper width I
+accessible field net/minecraft/world/dimension/AreaHelper negativeDir Lnet/minecraft/util/math/Direction;
+accessible field net/minecraft/world/dimension/AreaHelper world Lnet/minecraft/world/WorldAccess;

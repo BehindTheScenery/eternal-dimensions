@@ -25,6 +25,7 @@
 	"mixins": [
 		"no-more-dimensions.mixins.common.json"
 	],
+	"accessWidener" : "no-more-dimensions.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.14.21",
 		"minecraft": "~1.19.2",
