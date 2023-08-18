@@ -3,7 +3,7 @@
   "package": "com.vorono4ka.mixin.common",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractFireBlockMixin",
+    "AreaHelperMixin",
     "EnderEyeItemMixin",
     "EntityMixin",
     "NetherPortalBlockMixin",

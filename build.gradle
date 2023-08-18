@@ -28,6 +28,7 @@ loom {
 		}
 	}
 
+	accessWidenerPath = file("src/main/resources/no-more-dimensions.accesswidener")
 }
 
 dependencies {
