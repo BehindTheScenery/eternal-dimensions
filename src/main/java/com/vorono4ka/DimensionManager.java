@@ -9,10 +9,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.block.pattern.CachedBlockPosition;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -105,8 +108,15 @@ public class DimensionManager {
         boolean dimensionBlocked = isDimensionBlocked(dimension);
         if (dimensionBlocked) {
             playFailedSound(world, soundPosition);
+            giveFailedEffect(world);
         }
         return dimensionBlocked;
+    }
+
+    private static void giveFailedEffect(ServerWorld world) {
+        for (ServerPlayerEntity player : world.getPlayers()) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 1, false, false), player);
+        }
     }
 
     private static void playFailedSound(ServerWorld world, Vec3f soundPosition) {
