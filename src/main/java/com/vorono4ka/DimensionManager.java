@@ -1,6 +1,6 @@
 package com.vorono4ka;
 
-import com.vorono4ka.config.ModConfig;
+import com.vorono4ka.config.ModConfigManager;
 import com.vorono4ka.utilities.ArrayUtils;
 import com.vorono4ka.utilities.MathHelper;
 import com.vorono4ka.utilities.ParticleHelper;
@@ -141,7 +141,7 @@ public class DimensionManager {
     }
 
     private static boolean isDimensionBlocked(Identifier dimension) {
-        return ArrayUtils.contains(ModConfig.blockedDimensions, dimension.toString());
+        return ArrayUtils.contains(ModConfigManager.getConfig().common.getBlockedDimensions(), dimension.toString());
     }
 
     private static void createFailedParticles(ServerWorld world, ParticleEffect particleEffect, Vec3f cornerVector, Direction direction, Direction direction1, int height, int width, int depth, int particleCount, Vec3f delta) {

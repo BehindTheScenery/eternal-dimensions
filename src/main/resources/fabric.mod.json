@@ -16,10 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.vorono4ka.NoMoreDimensionsMod"
+			"com.vorono4ka.NoMoreDimensions"
 		],
 		"client": [
-			"com.vorono4ka.NoMoreDimensionsModClient"
+			"com.vorono4ka.NoMoreDimensionsClient"
+		],
+		"modmenu": [
+			"com.vorono4ka.modmenu.NoMoreDimensionsEntrypoint"
 		]
 	},
 	"mixins": [
@@ -30,7 +33,8 @@
 		"fabricloader": ">=0.14.21",
 		"minecraft": "~1.19.2",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=8"
 	},
 	"suggests": {
 		"another-mod": "*"
