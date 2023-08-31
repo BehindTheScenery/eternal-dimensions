@@ -8,8 +8,7 @@
 		"Vorono4ka"
 	],
 	"contact": {
-		"homepage": "https://github.com/Vorono4ka/no-more-dimensions",
-		"sources": "https://github.com/Vorono4ka/no-more-dimensions"
+		"sources": "https://github.com/BehindTheScenery/eternal-dimensions"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/no-more-dimensions/icon.png",
@@ -30,8 +29,8 @@
 	],
 	"accessWidener" : "no-more-dimensions.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.14.21",
-		"minecraft": "~1.19.2",
+		"fabricloader": ">=${loader_version}",
+		"minecraft": "~${minecraft_version}",
 		"java": ">=17",
 		"fabric-api": "*",
 		"cloth-config": ">=8"

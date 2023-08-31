@@ -3,7 +3,8 @@
   "custom_text.no_more_dimensions.dimension_blocked": "This dimension is not available to you right now!",
   "commands.no_more_dimensions.reload.success": "Config reloaded!",
 
+  "text.autoconfig.no_more_dimensions.title": "Blocked Dimensions Config",
   "text.autoconfig.no_more_dimensions.option.common": "Common",
-  "text.autoconfig.no_more_dimensions.option.common.listDelimiter": "List delimiter",
+  "text.autoconfig.no_more_dimensions.option.common.listDelimiter": "List Delimiter",
   "text.autoconfig.no_more_dimensions.option.common.blockedDimensions": "Blocked Dimensions"
 }
