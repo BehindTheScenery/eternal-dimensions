@@ -3,7 +3,8 @@
   "custom_text.no_more_dimensions.dimension_blocked": "Это измерение тебе сейчас не доступно!",
   "commands.no_more_dimensions.reload.success": "Конфиг перезагружен!",
 
+  "text.autoconfig.no_more_dimensions.title": "Конфигурация заблокированных измерений",
   "text.autoconfig.no_more_dimensions.option.common": "Общее",
-  "text.autoconfig.no_more_dimensions.option.common.listDelimiter": "Разделитель списка",
+  "text.autoconfig.no_more_dimensions.option.common.listDelimiter": "Разделитель Списка",
   "text.autoconfig.no_more_dimensions.option.common.blockedDimensions": "Заблокированные Измерения"
 }
