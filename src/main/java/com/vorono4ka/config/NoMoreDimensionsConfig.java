@@ -22,7 +22,7 @@ public class NoMoreDimensionsConfig implements ConfigData {
         public String blockedDimensions;
 
         public String[] getBlockedDimensions() {
-            return blockedDimensions.split(listDelimiter);
+            return blockedDimensions != null ? blockedDimensions.split(listDelimiter) : new String[0];
         }
     }
 }

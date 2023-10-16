@@ -10,7 +10,7 @@
 	"contact": {
 		"sources": "https://github.com/BehindTheScenery/eternal-dimensions"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/no-more-dimensions/icon.png",
 	"environment": "*",
 	"entrypoints": {
